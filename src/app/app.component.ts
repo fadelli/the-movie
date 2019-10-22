@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     jQuery(document).ready(() => {
       // jQuery('body').hide('fast');
-      jQuery('body').css({'background-color': 'yellow', 'font-size': '200%'});
+      // jQuery('body').css({'background-color': 'yellow', 'font-size': '200%'});
     });
   }
 }
