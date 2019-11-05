@@ -9,8 +9,15 @@ import { RouterModule } from '@angular/router';
 import { RouteRoutes } from './route.routing';
 import { MovieComponent } from './pages/movie/movie.component';
 import { Select2Module } from 'ng2-select2';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import * as $ from 'jquery';
+import { MovieService } from './service/movie.service';
+
+import { LOCALE_ID } from '@angular/core';
+
+
 declare var jQuery;
 
 @NgModule({
@@ -24,9 +31,13 @@ declare var jQuery;
     CommonModule,
     BrowserModule,
     Select2Module,
+    HttpClientModule,
     RouterModule.forRoot(RouteRoutes)
   ],
-  providers: [],
+  providers: [
+    MovieService,
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Select2OptionData } from 'ng2-select2';
+import { MovieService } from '../../service/movie.service';
+import { Discover } from '../../interfaces/discover';
+import { DiscoverResponse } from '../../interfaces/discover-response';
 
 
 @Component({
@@ -15,8 +18,10 @@ export class MovieComponent implements OnInit {
 
   public options: Select2Options;
   public optionsMultiple: Select2Options;
+  public discover: Discover;
+  public discoverResponse: DiscoverResponse = { results: []};
 
-  constructor() { }
+  constructor(private movieService: MovieService) { }
 
   ngOnInit() {
     this.options = {
@@ -28,6 +33,9 @@ export class MovieComponent implements OnInit {
     this.select2Year();
     this.selct2OrderBy();
     this.select2Genre();
+
+    this.discover = { sort_by: this.orderBy[0].id, primary_release_year: null}
+    this.movieService.getDiscover(this.discover).subscribe( (response: DiscoverResponse) => this.discoverResponse = response);
   }
 
 
