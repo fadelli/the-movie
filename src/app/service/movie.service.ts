@@ -15,8 +15,12 @@ export class MovieService extends BaseService {
         let httpHarams: HttpParams = new HttpParams();
         httpHarams = httpHarams.append('language', discover.language);
         httpHarams = httpHarams.append('sort_by', discover.sort_by);
-        if(typeof undefined !==  typeof discover.with_genres) {
-            discover.with_genres.map(item => httpHarams = httpHarams.append('with_genres', item.toString() ) );
+        httpHarams = httpHarams.append('page', discover.page.toString());
+        if (discover.primary_release_year !== null) {
+            httpHarams = httpHarams.append('primary_release_year', discover.primary_release_year.toString());
+        }
+        if (typeof undefined !== typeof discover.with_genres) {
+            discover.with_genres.map(item => httpHarams = httpHarams.append('with_genres', item.toString()));
         }
 
         return this.httpClient.get(this.formatUrl('discover/movie'), {

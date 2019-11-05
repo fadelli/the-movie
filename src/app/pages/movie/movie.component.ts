@@ -19,7 +19,9 @@ export class MovieComponent implements OnInit {
   public options: Select2Options;
   public optionsMultiple: Select2Options;
   public discover: Discover;
-  public discoverResponse: DiscoverResponse = { results: []};
+  public discoverResponse: DiscoverResponse = { results: [] };
+  public pages: Array<Number | string> = [];
+
 
   constructor(private movieService: MovieService) { }
 
@@ -27,15 +29,14 @@ export class MovieComponent implements OnInit {
     this.options = {
       multiple: false,
       theme: 'classic',
-      minimumResultsForSearch: -1,
-      closeOnSelect: false
+      minimumResultsForSearch: -1
     }
     this.select2Year();
     this.selct2OrderBy();
     this.select2Genre();
 
-    this.discover = { sort_by: this.orderBy[0].id, primary_release_year: null}
-    this.movieService.getDiscover(this.discover).subscribe( (response: DiscoverResponse) => this.discoverResponse = response);
+    this.discover = { sort_by: this.orderBy[0].id, primary_release_year: null, page: 1 }
+    this.getDiscover();
   }
 
 
@@ -70,7 +71,7 @@ export class MovieComponent implements OnInit {
   public select2Genre() {
     this.optionsMultiple = {
       multiple: true,
-      theme: 'classic',
+      theme: 'classic'
     };
 
     this.genre = [
@@ -96,6 +97,47 @@ export class MovieComponent implements OnInit {
       { id: 'Terror', text: 'Terror' },
       { id: 'Thriller', text: 'Thriller' }
     ]
+  }
+
+  public changeYear(event) {    
+    this.discover.primary_release_year = event.value !== '' ? Number(event.value) : null;
+    this.clearMovies();
+    this.getDiscover();
+  }
+
+  public clearMovies(){
+    this.pages = [];
+    this.discoverResponse.results = [];
+  }
+
+  public getDiscover() {
+    this.movieService.getDiscover(this.discover).subscribe((response: DiscoverResponse) => {
+      this.discoverResponse = response;
+      this.setPages();
+    });
+  }
+
+
+  public setPages() {
+    this.pages = [];
+    for(let cont = this.discoverResponse.page; (cont <= this.discoverResponse.page + 6) && cont < this.discoverResponse.total_pages; cont++ ){
+      this.pages.push(cont);
+      if(cont == this.discoverResponse.page + 6 && cont < this.discoverResponse.total_pages - 2){
+        this.pages.push('...');
+        this.pages.push(this.discoverResponse.total_pages - 1);
+        this.pages.push(this.discoverResponse.total_pages);
+      }
+      if(cont == this.discoverResponse.page && cont !== 1){
+        this.pages.unshift(this.discoverResponse.page - 1);
+      }
+    }
+  }
+
+  public onChangePage(item) {
+    if(item !== this.discoverResponse.page){
+      this.discover.page = item;
+      this.getDiscover();
+    }    
   }
 
 }

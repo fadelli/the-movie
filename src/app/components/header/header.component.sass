@@ -3,8 +3,40 @@
 .bg-one-header
     background-color: $color-one
 
+.position-fixed
+    width: 100%
+    left: 0
+    top: 0
+    z-index: 999
+
 .mobile-menu
     display: none
+    position: fixed
+    top: 8vh
+    background: $color-one
+    color: #cc999911
+    height: 92vh
+    width: 90vw
+    z-index: 99999
+    opacity: 0.95
+    padding: 20px
+    li
+        padding-bottom: 6px
+    a
+        text-decoration: none
+        color: #fff
+        font-size: 1.3em
+        line-height: 1.2em
+    .sub_menu
+        display: none
+        a
+            font-size: 0.9em
+            color: $color-seven
+    .small
+        margin-top: 20px
+        a
+            color: $color-seven
+            font-size: 1.25em
 
 .fa-bars, .fa-user, .fa-search, .fa-times
     font-size: 20px
@@ -16,7 +48,7 @@
     font-size: 1em
     border: 0 solid #ffffff
     font-style: italic
-    background: #fff    
+    background: #fff
     width: 100%
     line-height: 1.2em
     color: $color-two
@@ -29,8 +61,11 @@
 .search
     background-color: #fff
     height: 46px
+    width: 100%
+    padding: 0 33px
     border-bottom: 1px solid #dedede
     input
+        width: 86%
         @extend .input-search
         &::-webkit-input-placeholder /* Chrome/Opera/Safari */
             @extend .input-search-placeholder

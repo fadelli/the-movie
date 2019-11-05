@@ -2,15 +2,15 @@
   <h2>Explorar</h2>
   <div class="form-group">
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-xl-2">
         <label class="d-block" for="year">Ano</label>
-        <select2 [data]="years" [options]="options" [cssImport]="true"></select2>
+        <select2 (valueChanged)="changeYear($event)" [data]="years" [options]="options" [cssImport]="true"></select2>
       </div>
-      <div class="col-md-3">
+      <div class="col-xl-3">
         <label class="d-block" for="year">Ordenar por</label>
         <select2 [data]="orderBy" [options]="options" [cssImport]="true"></select2>
       </div>
-      <div class="col-md-3">
+      <div class="col-xl-3">
         <label class="d-block" for="year">Gêneros</label>
         <select2 [data]="genre" [options]="optionsMultiple" [cssImport]="true"></select2>
       </div>
@@ -18,15 +18,20 @@
   </div>
   <h2>Filmes</h2>
   <div class="row">
-    <div class="col-md-6" *ngFor="let movie of discoverResponse.results">
-      <img class="mobile" [src]="'https://image.tmdb.org/t/p/w500_and_h282_face/' +  movie.backdrop_path" alt="">
-      <!-- {{ 'https://image.tmdb.org/t/p/w500_and_h282_face/' + movie.poster_path }}
-      {{ 'https://image.tmdb.org/t/p/w500_and_h282_face/' + movie.backdrop_path }} -->
-      <div class="content">
-        <a>{{ movie.title }}</a>
-        <span>{{ (movie.release_date | date: 'dd') + ' de ' + (movie.release_date | date: 'MMMM') + ' de ' + (movie.release_date | date: 'yyyy') }}</span>
+    <div class="col-xl-6" *ngFor="let movie of discoverResponse.results">
+      <div class="card-movie">
+        <img class="mobile" [src]="'https://image.tmdb.org/t/p/w500_and_h282_face/' +  movie.backdrop_path" alt="">
+        <!-- {{ 'https://image.tmdb.org/t/p/w500_and_h282_face/' + movie.poster_path }}
+          {{ 'https://image.tmdb.org/t/p/w500_and_h282_face/' + movie.backdrop_path }} -->
+        <div class="content">
+          <a>{{ movie.title }}</a>
+          <span>{{ (movie.release_date | date: 'dd') + ' de ' + (movie.release_date | date: 'MMMM') + ' de ' + (movie.release_date | date: 'yyyy') }}</span>
+        </div>
       </div>
     </div>
   </div>
 
+  <div class="pagination">
+    <span [ngClass]="{'active': item === discoverResponse.page }" (click)="onChangePage(item)" *ngFor="let item of pages">{{ item }}</span>
+  </div>
 </div>

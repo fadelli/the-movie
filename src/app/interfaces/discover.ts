@@ -3,4 +3,5 @@ export interface Discover {
     primary_release_year?: Number;
     sort_by?: string;
     with_genres?: Number[];
+    page?: Number;
 }
