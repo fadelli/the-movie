@@ -1,4 +1,4 @@
-import { Discover } from "./discover";
+import { Discover } from './discover';
 
 export interface DiscoverResponse {
     page?: number;

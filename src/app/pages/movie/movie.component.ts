@@ -32,12 +32,12 @@ export class MovieComponent implements OnInit {
       multiple: false,
       theme: 'classic',
       minimumResultsForSearch: -1
-    }
+    };
     this.select2Year();
     this.selct2OrderBy();
     this.select2Genre();
 
-    this.discover = { sort_by: this.orderBy[0].id, primary_release_year: null, page: 1 }
+    this.discover = { sort_by: this.orderBy[0].id, primary_release_year: null, page: 1 };
     this.getDiscover();
   }
 
@@ -98,10 +98,10 @@ export class MovieComponent implements OnInit {
       { id: 'Romance', text: 'Romance' },
       { id: 'Terror', text: 'Terror' },
       { id: 'Thriller', text: 'Thriller' }
-    ]
+    ];
   }
 
-  public changeYear(event) {    
+  public changeYear(event) {
     this.discover.primary_release_year = event.value !== '' ? Number(event.value) : null;
     this.discover.page = 1;
     this.clearMovies();
@@ -130,30 +130,32 @@ export class MovieComponent implements OnInit {
   }
 
   public getResume(text: string) {
-    return text.substr(0,159) + '...';
+    return text.substr(0, 159) + '...';
   }
 
 
   public setPages() {
     this.pages = [];
-    for(let cont = this.discoverResponse.page; (cont <= this.discoverResponse.page + 6) && cont < this.discoverResponse.total_pages; cont++ ){
+    for (let cont = this.discoverResponse.page;
+        (cont <= this.discoverResponse.page + 6) && cont < this.discoverResponse.total_pages; cont++) {
       this.pages.push(cont);
-      if(cont == this.discoverResponse.page + 6 && cont < this.discoverResponse.total_pages - 2){
+      if (cont === this.discoverResponse.page + 6 && cont < this.discoverResponse.total_pages - 2) {
         this.pages.push('...');
         this.pages.push(this.discoverResponse.total_pages - 1);
         this.pages.push(this.discoverResponse.total_pages);
       }
-      if(cont == this.discoverResponse.page && cont !== 1){
+      if (cont === this.discoverResponse.page && cont !== 1) {
         this.pages.unshift(this.discoverResponse.page - 1);
       }
     }
   }
 
   public onChangePage(item) {
-    if(item !== this.discoverResponse.page){
+    if (item !== this.discoverResponse.page) {
       this.discover.page = item;
+      // this.clearMovies();
       this.getDiscover();
-    }    
+    }
   }
 
 }

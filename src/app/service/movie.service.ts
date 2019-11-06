@@ -25,6 +25,6 @@ export class MovieService extends BaseService {
 
         return this.httpClient.get(this.formatUrl('discover/movie'), {
             params: httpHarams
-        })
+        });
     }
 }
