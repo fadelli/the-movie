@@ -78,3 +78,36 @@
 
         &:-moz-placeholder /* Firefox 18- */
             @extend .input-search-placeholder
+
+.container-fluid
+    position: relative
+.menu-desktop, .sub-menu-desktop
+    position: absolute
+    & ul li
+        display: inline-block
+        margin: 10px 15px
+        color: #ffffff
+        font-weight: 600
+        &.language
+            padding: 4px 5px
+            border-radius: 3px           
+            border: 1px solid #fff
+            font-size: 0.9em
+        a
+            color: #ffffff
+            font-weight: 600
+            text-decoration: none
+    .sub_menu
+        display: none
+
+.menu-desktop
+    top: 38px
+    left: 112px
+
+.sub-menu-desktop
+    text-align: right
+    top: 5px
+    right: 0px
+    .small a
+        color: $color-seven !important
+        font-size: 0.75em

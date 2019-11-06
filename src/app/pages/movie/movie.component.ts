@@ -21,6 +21,7 @@ export class MovieComponent implements OnInit {
   public discover: Discover;
   public discoverResponse: DiscoverResponse = { results: [] };
   public pages: Array<Number | string> = [];
+  public loading = true;
 
 
   constructor(private movieService: MovieService) { }
@@ -105,7 +106,14 @@ export class MovieComponent implements OnInit {
     this.getDiscover();
   }
 
-  public clearMovies(){
+  public changeOrderBy(event) {
+    this.discover.sort_by = event.value !== '' ? event.value : null;
+    this.clearMovies();
+    this.getDiscover();
+  }
+
+  public clearMovies() {
+    this.loading = true;
     this.pages = [];
     this.discoverResponse.results = [];
   }
@@ -114,7 +122,12 @@ export class MovieComponent implements OnInit {
     this.movieService.getDiscover(this.discover).subscribe((response: DiscoverResponse) => {
       this.discoverResponse = response;
       this.setPages();
+      this.loading = false;
     });
+  }
+
+  public getResume(text: string) {
+    return text.substr(0,159) + '...';
   }
 
 

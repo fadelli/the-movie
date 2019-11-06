@@ -1,3 +1,5 @@
+@import '_colors'
+
 h2
     font-size: 1.5em
     margin: 15px 0
@@ -9,16 +11,43 @@ label
 
 img.mobile
     width: 100%
+img.desktop
+    width: 185px
+    height: 272px
+    min-width: 185px
+    min-height: 272px
+
+@media screen and ( min-width: 1200px )
+    .card-movie
+        display: flex
 
 .content
     padding: 6px 10px
-    a 
+    position: relative
+    width: 100%
+    p
+        color: $color-eight
+        word-wrap: break-word
+        white-space: normal
+        font-size: 0.9em
+        line-height: 1.2em
+        margin-top: 30px
+    .link-movie
+        width: 100%
+        border-top: 1px solid #e3e3e3
+        position: absolute
+        bottom: 0
+        left: 0
+        padding: 16px
+        cursor: pointer
+    a
         font-size: 1.1em
         font-weight: bold
         display: block
         margin-bottom: 5px
     span
         font-size: 1em
+
 .card-movie
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
     margin-bottom: 16px
