@@ -8,18 +8,37 @@
     .bg-footer
         background: url('/assets/images/bg-footer.jpg'), radial-gradient(at 30% top, rgba(7, 64, 52, 1) 0%, rgba(8, 28, 36, 1) 70%)
         background-repeat: no-repeat
+        height: 450px
+        box-sizing: border-box
+        padding: 0
+        background-position: center top
+        background-size: cover
+        background-repeat: no-repeat
+        display: flex
+        align-items: center
+        footer
+            display: flex
+            justify-content: space-between
+            > div
+                margin-right: 20px
+                min-width: 0
+                box-sizing: border-box
+            .desktop
+                width: 230px
+                text-align: right
+                position: relative
+                top: -36px
+                right: 0
+                img
+                    display: block
+                    position: absolute
+                    top: 0
+                    right: 0
     .btn-join
         position: relative
         top: 140px
-        border-color: #fff
-        background-color: #fff
-        color: #01d277
-        font-size: 1.3em
-        font-weight: bold
-        display: inline-block
-        word-wrap: break-word
-        white-space: normal
-        text-transform: uppercase
+        color: #01d277 !important
+        font-size: 1.3em !important
 
 .btn-join
     color: $color-five

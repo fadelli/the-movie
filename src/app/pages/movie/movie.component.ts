@@ -102,12 +102,14 @@ export class MovieComponent implements OnInit {
 
   public changeYear(event) {    
     this.discover.primary_release_year = event.value !== '' ? Number(event.value) : null;
+    this.discover.page = 1;
     this.clearMovies();
     this.getDiscover();
   }
 
   public changeOrderBy(event) {
     this.discover.sort_by = event.value !== '' ? event.value : null;
+    this.discover.page = 1;
     this.clearMovies();
     this.getDiscover();
   }
