@@ -3,7 +3,7 @@ import { Select2OptionData } from 'ng2-select2';
 import { MovieService } from '../../service/movie.service';
 import { Discover } from '../../interfaces/discover';
 import { DiscoverResponse } from '../../interfaces/discover-response';
-
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-movie',
@@ -28,6 +28,7 @@ export class MovieComponent implements OnInit {
 
   ngOnInit() {
     this.options = {
+      dropdownParent: $('.main .container-fluid'),
       multiple: false,
       theme: 'classic',
       minimumResultsForSearch: -1
