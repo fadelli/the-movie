@@ -136,10 +136,8 @@ export class MovieComponent implements OnInit {
 
   public setPages() {
     this.pages = [];
-    const pageEnd = this.discoverResponse.total_pages - this.discoverResponse.page;
-    
     for (let cont = this.discoverResponse.page;
-        (cont <= this.discoverResponse.page + 6) && cont <= this.discoverResponse.total_pages; cont++) {
+      (cont <= this.discoverResponse.page + 6) && cont <= this.discoverResponse.total_pages; cont++) {
       this.pages.push(cont);
       if (cont === this.discoverResponse.page + 6 && cont < this.discoverResponse.total_pages - 2) {
         this.pages.push('...');
@@ -149,7 +147,7 @@ export class MovieComponent implements OnInit {
       if (cont === this.discoverResponse.page && cont !== 1) {
         this.pages.unshift(this.discoverResponse.page - 1);
       }
-    }    
+    }
   }
 
   public onChangePage(item) {
